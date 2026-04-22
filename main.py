@@ -43,9 +43,22 @@ class WorkflowManager:
 if __name__ == "__main__":
     manager = WorkflowManager()
     
-    if len(sys.argv) > 1:
-        user_task = " ".join(sys.argv[1:])
-    else:
-        user_task = "Write a basic Python script to scrape a website and then review it for security."
-        
-    manager.execute(user_task)
+    print("🤖 Welcome to Multi-Agent Workflows!")
+    print("Type 'exit' or 'quit' to stop.\n")
+    
+    while True:
+        try:
+            user_task = input("👉 Enter your task: ")
+            if user_task.lower() in ["exit", "quit"]:
+                break
+            
+            if not user_task.strip():
+                continue
+                
+            manager.execute(user_task)
+            print("\n" + "="*50 + "\n")
+            
+        except KeyboardInterrupt:
+            break
+        except Exception as e:
+            print(f"❌ An error occurred: {e}")
